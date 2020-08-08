@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/JekaTka/cryptohex-api/db"
 	"github.com/JekaTka/cryptohex-api/pkg/api"
 	"github.com/JekaTka/cryptohex-api/pkg/api/healthcheck"
 	"github.com/labstack/echo/v4"
@@ -21,9 +22,7 @@ type serverParams struct {
 type serverFactory func(params serverParams) *http.Server
 
 func makeServerFactory(ctx context.Context /*, cfg *config.Config*/) serverFactory {
-	log.Println("test: ")
 	return func(params serverParams) *http.Server {
-		log.Println("Params: ", params.Router.Routes()[0])
 		return &http.Server{
 			Addr:         fmt.Sprintf("[::]:%d", 1323),
 			ReadTimeout:  10 * time.Second,
@@ -33,10 +32,22 @@ func makeServerFactory(ctx context.Context /*, cfg *config.Config*/) serverFacto
 	}
 }
 
+// func makeDBConnection() *db.DB {
+// 	conn, err := db.NewConnection()
+// 	if err != nil {
+// 		log.Fatal("Can't connect to DB: ", err)
+// 	}
+
+// 	return conn
+// }
+
 func bootstrapService(ctx context.Context /*, cfg *config.Config*/) func(*dig.Container) {
 	return func(c *dig.Container) {
 		c.Provide(echo.New)
 		c.Provide(makeServerFactory(ctx))
+
+		// connect to db
+		db.Register(c)
 
 		// api
 		healthcheck.Register(c)
