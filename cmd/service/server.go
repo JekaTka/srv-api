@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/JekaTka/cryptohex-api/config"
 	"github.com/JekaTka/cryptohex-api/db"
 	"github.com/JekaTka/cryptohex-api/pkg/api"
 	"github.com/JekaTka/cryptohex-api/pkg/api/healthcheck"
@@ -32,19 +33,14 @@ func makeServerFactory(ctx context.Context /*, cfg *config.Config*/) serverFacto
 	}
 }
 
-// func makeDBConnection() *db.DB {
-// 	conn, err := db.NewConnection()
-// 	if err != nil {
-// 		log.Fatal("Can't connect to DB: ", err)
-// 	}
-
-// 	return conn
-// }
-
-func bootstrapService(ctx context.Context /*, cfg *config.Config*/) func(*dig.Container) {
+func bootstrapService(ctx context.Context, cfg *config.Config) func(*dig.Container) {
 	return func(c *dig.Container) {
 		c.Provide(echo.New)
 		c.Provide(makeServerFactory(ctx))
+
+		// config
+		c.Provide(func() *config.Config { return cfg })
+		c.Provide(func() *config.DB { return cfg.DB })
 
 		// connect to db
 		db.Register(c)
@@ -57,8 +53,9 @@ func bootstrapService(ctx context.Context /*, cfg *config.Config*/) func(*dig.Co
 func main() {
 	ctx := context.Background()
 	di := dig.New()
+	cfg := config.Load()
 
-	bootstrapService(ctx)(di)
+	bootstrapService(ctx, cfg)(di)
 	if err := di.Invoke(func(httpServer *http.Server) error {
 		log.Println("Starting service")
 
