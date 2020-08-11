@@ -3,8 +3,8 @@ package db
 import (
 	"fmt"
 	"log"
-	"os"
 
+	"github.com/JekaTka/cryptohex-api/config"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
@@ -13,14 +13,8 @@ type DB struct {
 	*gorm.DB
 }
 
-func NewConnection() (*DB, error) {
-	// Get database details from environment variables
-	host := os.Getenv("DB_HOST")
-	user := os.Getenv("DB_USER")
-	DBName := os.Getenv("DB_NAME")
-	password := os.Getenv("DB_PASSWORD")
-
-	connStr := fmt.Sprintf("postgres://%s:%s@%s/%s?sslmode=disable", user, password, host, DBName)
+func NewConnection(cfg *config.DB) (*DB, error) {
+	connStr := fmt.Sprintf("postgres://%s:%s@%s/%s?sslmode=disable", cfg.User, cfg.Password, cfg.Host, cfg.Database)
 	log.Println("DB conn string: ", connStr)
 
 	conn, err := gorm.Open("postgres", connStr)
