@@ -1,6 +1,9 @@
 package config
 
-import "os"
+import (
+	"time"
+	"os"
+)
 
 type DB struct {
 	Host     string
@@ -9,8 +12,15 @@ type DB struct {
 	Password string
 }
 
+type Server struct {
+	Port int
+	ReadTimeout time.Duration
+	WriteTimeout time.Duration
+}
+
 type Config struct {
 	DB *DB
+	Server *Server
 }
 
 func Load() *Config {
@@ -20,6 +30,11 @@ func Load() *Config {
 			User:     os.Getenv("DB_USER"),
 			Database: os.Getenv("DB_NAME"),
 			Password: os.Getenv("DB_PASSWORD"),
+		},
+		Server: &Server{
+			Port: 1323,
+			ReadTimeout: 10 * time.Second,
+			WriteTimeout: 10 * time.Second,
 		},
 	}
 }

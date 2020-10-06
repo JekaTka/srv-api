@@ -1,17 +1,12 @@
 package user
 
-import "time"
-
-// "github.com/jinzhu/gorm"
+import (
+	"github.com/JekaTka/cryptohex-api/pkg/domain/entity"
+)
 
 type User struct {
-	// gorm.Model
-	ID        string
-	Hash      string
+	entity.Model
 	Nickname  string
-	Email     string `gorm:"type:varchar(150);unique_index"`
+	Email     string
 	Password  string
-	CreatedAt time.Time
-	UpdatedAt time.Time
-	DeletedAt *time.Time
 }
