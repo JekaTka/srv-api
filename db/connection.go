@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
-	"github.com/JekaTka/cryptohex-api/config"
+	"github.com/JekaTka/srv-api/config"
 
 	// blank import to have driver registered
 	_ "github.com/lib/pq"

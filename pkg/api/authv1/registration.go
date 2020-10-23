@@ -4,7 +4,7 @@ import (
 	"github.com/labstack/echo"
 	"go.uber.org/dig"
 	"net/http"
-	"github.com/JekaTka/cryptohex-api/pkg/domain/entity/user"
+	"github.com/JekaTka/srv-api/pkg/domain/entity/user"
 )
 
 type RegistrationHandler echo.HandlerFunc
@@ -13,6 +13,7 @@ type dependancies struct {
 	dig.In
 
 	uService user.Service
+	auth auth.Register
 }
 
 // @Summary Registration for new user

@@ -1,1 +1,4 @@
 package pg
+
+maxConns()
+maxIdle

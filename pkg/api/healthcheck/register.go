@@ -1,7 +1,7 @@
 package healthcheck
 
 import (
-	"github.com/JekaTka/cryptohex-api/pkg/api"
+	"github.com/JekaTka/srv-api/pkg/api"
 	"github.com/labstack/echo/v4"
 	"go.uber.org/dig"
 )

@@ -1,6 +1,6 @@
 package user
 
-import "github.com/JekaTka/cryptohex-api/pkg/domain/entity"
+import "github.com/JekaTka/srv-api/pkg/domain/entity"
 
 //Reader interface
 type Reader interface {

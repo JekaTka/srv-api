@@ -1,9 +1,9 @@
 package user
 
 import (
-	"github.com/JekaTka/cryptohex-api/pkg/services/password"
+	"github.com/JekaTka/srv-api/pkg/services/password"
 	"time"
-	"github.com/JekaTka/cryptohex-api/pkg/domain/entity"
+	"github.com/JekaTka/srv-api/pkg/domain/entity"
 )
 
 //Service service interface

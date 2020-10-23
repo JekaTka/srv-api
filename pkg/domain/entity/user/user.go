@@ -1,7 +1,7 @@
 package user
 
 import (
-	"github.com/JekaTka/cryptohex-api/pkg/domain/entity"
+	"github.com/JekaTka/srv-api/pkg/domain/entity"
 )
 
 type User struct {

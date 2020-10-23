@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/JekaTka/cryptohex-api/config"
-	"github.com/JekaTka/cryptohex-api/db"
-	"github.com/JekaTka/cryptohex-api/pkg/api"
-	"github.com/JekaTka/cryptohex-api/pkg/api/healthcheck"
-	"github.com/JekaTka/cryptohex-api/pkg/services/password"
+	"github.com/JekaTka/srv-api/config"
+	"github.com/JekaTka/srv-api/db"
+	"github.com/JekaTka/srv-api/pkg/api"
+	"github.com/JekaTka/srv-api/pkg/api/healthcheck"
+	"github.com/JekaTka/srv-api/pkg/services/password"
 	"github.com/labstack/echo"
 	"go.uber.org/dig"
 	"net/http"

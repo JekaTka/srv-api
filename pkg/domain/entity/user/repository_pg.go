@@ -2,7 +2,7 @@ package user
 
 import (
 	"database/sql"
-	"github.com/JekaTka/cryptohex-api/pkg/domain/entity"
+	"github.com/JekaTka/srv-api/pkg/domain/entity"
 )
 
 //PGRepo repo

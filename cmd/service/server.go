@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"github.com/JekaTka/cryptohex-api/config"
+	"github.com/JekaTka/srv-api/config"
 	"go.uber.org/dig"
 	"log"
 	"net/http"
